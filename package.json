@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@superoffice/tsclient.webapi": "^10.2.6-1262",
+    "typescript": "^5.2.2"
+  }
+}
