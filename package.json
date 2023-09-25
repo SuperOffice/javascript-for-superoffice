@@ -4,6 +4,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "generate-extensionMethods": "node Scripts/generateExtensionMethods.js"
+    "generate-extensionMethods": "node Scripts/generateExtensionMethods.js",
+    "setup": "npm install typescript --save-dev && npx install"
   }
 }

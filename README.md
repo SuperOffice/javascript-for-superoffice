@@ -3,13 +3,8 @@ Contains examples and get-started for crmscript v2
 
 # Using this git repo:
 1. git clone https://github.com/juleiste/CRMScriptsV2.git
-
-If you do not have typescript installed
-2. npm install typescript --save-dev
-
-3. npx install
-4. ?
-5. Profit
+2. npm run setup
+3. Check out the Examples-folder
 
 # Starting from scratch
 1. npx tsc --init
@@ -23,11 +18,15 @@ If you do not have typescript installed
 6. npx tsc
 
 # How do i run my script?
+The scripts still need to be executed inside of SuperOffice!! This means you will have to copy-paste the scripts into the SuperOffice-editor after creation.
+
+VSCODE:
 To help the editor understand the @types we need to have the import-statement at the top of the file. This line is redundant in the SuperOffice-script, as it s imported by default. 
 
 It is also important that you import the tsclient.webapi as RTL, as that is what the SuperOffice-environment expects.
 
 Lets use CreateContactEntity.cs as an example:
+<!-- START:CreateContactEntity.ts -->
 ```TypeScript
 import * as RTL from "@superoffice/tsclient.webapi";
 
@@ -36,6 +35,7 @@ let cEntity = await cAgent.CreateDefaultContactEntity();
 cEntity.Name = "ContactName";
 cEntity = await cAgent.SaveContactEntity(cEntity);
 ```
+<!-- END:CreateContactEntity.ts -->
 
 After you have run 'npx tsc' this will get compiled into a .js-file (it creates a new file in the same location). Notice that the syntax looks identical for this example:
 ```JavaScript
