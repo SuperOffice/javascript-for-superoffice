@@ -32,11 +32,11 @@ import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 
 //Variables
-const newContactName: string = "ContactName";
+const newName: string = "NewName";
 
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newContactName;
+entity.Name = newName;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 ```
@@ -48,10 +48,10 @@ After you have run 'npx tsc' this will get compiled into a .js-file (it creates 
 import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 //Variables
-const newContactName = "ContactName";
+const newName = "NewName";
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newContactName;
+entity.Name = newName;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 
@@ -62,10 +62,10 @@ And this is what you copy-paste into your SuperOffice-Script:
 <!-- START:.crmscript -->
 ```typescript
 //Variables
-const newContactName = "ContactName";
+const newName = "NewName";
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newContactName;
+entity.Name = newName;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 

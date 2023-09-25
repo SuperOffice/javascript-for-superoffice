@@ -2,10 +2,11 @@ import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 
 //Variables
-const newContactName: string = "NewContactName";
+const newName: string = "NewName";
+const entityId: number = 2;
 
 const agent = new RTL.ContactAgent();
-let entity = await agent.getContactEntityAsync(2);
-entity.Name = newContactName;
+let entity = await agent.getContactEntityAsync(entityId);
+entity.Name = newName;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
