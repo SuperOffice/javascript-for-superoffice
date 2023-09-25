@@ -4,6 +4,6 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "generate-extensionMethods": "node Scripts/generateExtensions.js"
+    "generate-extensionMethods": "node Scripts/generateExtensionMethods.js"
   }
 }

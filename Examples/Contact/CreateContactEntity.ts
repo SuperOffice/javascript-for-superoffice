@@ -1,6 +1,7 @@
 import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 
+//Variables
 const newContactName: string = "NewContactName";
 
 const agent = new RTL.ContactAgent();
