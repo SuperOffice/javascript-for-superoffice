@@ -25,32 +25,43 @@ If you do not have typescript installed
 # How do i run my script?
 To help the editor understand the @types we need to have the import-statement at the top of the file. This line is redundant in the SuperOffice-script, as it s imported by default. 
 
+It is also important that you import the tsclient.webapi as RTL, as that is what the SuperOffice-environment expects.
+
 Lets use CreateContactEntity.cs as an example:
 ```TypeScript
-import * as tsclientWebapi from "@superoffice/tsclient.webapi";
+import * as RTL from "@superoffice/tsclient.webapi";
 
-let pAgent = new tsclientWebapi.ContactAgent();
-let cEntity = await pAgent.CreateDefaultContactEntity();
+const cAgent = new RTL.ContactAgent();
+let cEntity = await cAgent.CreateDefaultContactEntity();
 cEntity.Name = "ContactName";
-await pAgent.SaveContactEntity(cEntity);
+cEntity = await cAgent.SaveContactEntity(cEntity);
 ```
 
 After you have run 'npx tsc' this will get compiled into a .js-file (it creates a new file in the same location). Notice that the syntax looks identical for this example:
 ```JavaScript
-import * as tsclientWebapi from "@superoffice/tsclient.webapi";
-let pAgent = new tsclientWebapi.ContactAgent();
-let cEntity = await pAgent.CreateDefaultContactEntity();
+import * as RTL from "@superoffice/tsclient.webapi";
+const cAgent = new RTL.ContactAgent();
+let cEntity = await cAgent.CreateDefaultContactEntity();
 cEntity.Name = "ContactName";
-await pAgent.SaveContactEntity(cEntity);
+cEntity = await cAgent.SaveContactEntity(cEntity);
 ```
+
 
 And this is what you copy-paste into your SuperOffice-Script:
 ```JavaScript
-let pAgent = new tsclientWebapi.ContactAgent();
-let cEntity = await pAgent.CreateDefaultContactEntity();
+const cAgent = new RTL.ContactAgent();
+let cEntity = await cAgent.CreateDefaultContactEntity();
 cEntity.Name = "ContactName";
-await pAgent.SaveContactEntity(cEntity);
+cEntity = await cAgent.SaveContactEntity(cEntity);
 ```
+
+# How do i log anything in SuperOffice?
+The good old print()/printLine() is now gone, and we need to use 'context.result.body' to print any of the values back into the debug-window.
+In the above example (CreateContactEntity.cs) we would do something like this:
+
+context.result.body = 
+
+
 
 # How does CRMSCript V2 work?
 CRMSCript V2 enables you to write scripts with javascript, moving away from the traditional CRMscript-language as a whole. 

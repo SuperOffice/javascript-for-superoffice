@@ -1,8 +1,10 @@
-import * as tsclientWebapi from "@superoffice/tsclient.webapi";
+import { RTL } from "../../Helpers/extensionMethods";
+import { context } from "../../Helpers/logHelper";
 
-let pAgent = new tsclientWebapi.ContactAgent();
-let cEntity = await pAgent.CreateDefaultContactEntity();
-cEntity.Name = "ContactName";
-await pAgent.SaveContactEntity(cEntity);
+const newContactName: string = "NewContactName";
 
-
+const agent = new RTL.ContactAgent();
+let entity = await agent.createDefaultContactEntityAsync();
+entity.Name = newContactName;
+entity = await agent.saveContactEntityAsync(entity);
+context.result.body = JSON.stringify(entity);
