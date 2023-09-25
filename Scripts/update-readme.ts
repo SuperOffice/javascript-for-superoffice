@@ -3,7 +3,7 @@ import * as path from 'path';
 
 const mappings: { [key: string]: string } = {
     '../Examples/Contact/CreateContactEntity.ts': 'CreateContactEntity.ts',
-    // 'Examples/AnotherExample.ts': 'AnotherExample.ts',
+    '../Examples/Contact/CreateContactEntity.js': 'CreateContactEntity.js',
     // ... add more mappings as needed
 };
 

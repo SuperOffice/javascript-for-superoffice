@@ -4,7 +4,7 @@ var fs = require("fs");
 var path = require("path");
 var mappings = {
     '../Examples/Contact/CreateContactEntity.ts': 'CreateContactEntity.ts',
-    // 'Examples/AnotherExample.ts': 'AnotherExample.ts',
+    '../Examples/Contact/CreateContactEntity.js': 'CreateContactEntity.js',
     // ... add more mappings as needed
 };
 function updateCodeBlock(fileChanged) {
