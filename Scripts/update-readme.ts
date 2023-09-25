@@ -1,38 +1,36 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const mappings: { [key: string]: string } = {
-    '../Examples/Contact/CreateContactEntity.ts': 'CreateContactEntity.ts',
-    '../Examples/Contact/CreateContactEntity.js': 'CreateContactEntity.js',
-    // ... add more mappings as needed
-};
+function updateCodeBlock(): void {
 
-function updateCodeBlock(fileChanged: string): void {
-    const blockIdentifier = mappings[fileChanged];
-    if (!blockIdentifier) return;
-
-    const codeFilePath = path.resolve(__dirname, fileChanged);
     const readmePath = path.resolve(__dirname, '..', 'readme.md');
-
-    // Read the changing file
-    const codeContent: string = fs.readFileSync(codeFilePath, 'utf-8');
-    const newCodeBlock: string = `<!-- START:${blockIdentifier} -->\n\`\`\`typescript\n${codeContent}\n\`\`\`\n<!-- END:${blockIdentifier} -->`;
 
     // Read the README
     const readmeContent: string = fs.readFileSync(readmePath, 'utf-8');
 
-    // Use regex to replace the existing code block with the new one
-    const pattern = new RegExp(`<!-- START:${blockIdentifier} -->[\\s\\S]+?<!-- END:${blockIdentifier} -->`);
-    const updatedReadmeContent: string = readmeContent.replace(pattern, newCodeBlock);
+    // Read the changed .ts-file
+    let tsCodeContent: string = fs.readFileSync(path.resolve(__dirname, '..', 'Examples', 'Contact', 'CreateContactEntity.ts'), 'utf-8');
+    const tsCodeBlock: string = `<!-- START:.ts -->\n\`\`\`typescript\n${tsCodeContent}\n\`\`\`\n<!-- END:.ts -->`;
+    
+    // Read the changed .js-file
+    let jsCodeContent: string = fs.readFileSync(path.resolve(__dirname, '..', 'Examples', 'Contact', 'CreateContactEntity.js'), 'utf-8');
+    const jsCodeBlock: string = `<!-- START:.js -->\n\`\`\`typescript\n${jsCodeContent}\n\`\`\`\n<!-- END:.js -->`;
+    
+    // Filter out the lines with 'import'
+    const jsCodeContentFiltered = jsCodeContent.split('\n')
+                                            .filter(line => !line.trim().startsWith('import'))
+                                            .join('\n');
+    const crmscriptCodeBlock: string = `<!-- START:.crmscript -->\n\`\`\`typescript\n${jsCodeContentFiltered}\n\`\`\`\n<!-- END:.crmscript -->`;
 
+    // Use regex to make all the patterns we need
+    const tsPattern = new RegExp(`<!-- START:.ts -->[\\s\\S]+?<!-- END:.ts -->`);
+    const jsPattern = new RegExp(`<!-- START:.js -->[\\s\\S]+?<!-- END:.js -->`);
+    const crmscriptPattern = new RegExp(`<!-- START:.crmscript -->[\\s\\S]+?<!-- END:.crmscript -->`);
+
+    const updatedReadmeContent: string = readmeContent.replace(tsPattern, tsCodeBlock).replace(jsPattern, jsCodeBlock).replace(crmscriptPattern, crmscriptCodeBlock); 
+    
     // Write the updated content back to the README
     fs.writeFileSync(readmePath, updatedReadmeContent);
 }
 
-// Grab the filename from the command-line arguments
-const fileChanged: string = process.argv[2];
-if (fileChanged) {
-    updateCodeBlock(fileChanged);
-} else {
-    console.log("Please provide the path to the file you changed.");
-}
+updateCodeBlock();

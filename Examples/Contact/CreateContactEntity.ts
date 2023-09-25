@@ -2,7 +2,7 @@ import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 
 //Variables
-const newContactName: string = "NewContactName";
+const newContactName: string = "ContactName";
 
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();

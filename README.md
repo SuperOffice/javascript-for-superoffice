@@ -26,13 +26,13 @@ To help the editor understand the @types we need to have the import-statement at
 It is also important that you import the extensionMethods as RTL, as that is what the SuperOffice-environment expects.
 
 Lets use CreateContactEntity.cs as an example:
-<!-- START:CreateContactEntity.ts -->
+<!-- START:.ts -->
 ```typescript
 import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 
 //Variables
-const newContactName: string = "NewContactName";
+const newContactName: string = "ContactName";
 
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
@@ -40,15 +40,15 @@ entity.Name = newContactName;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 ```
-<!-- END:CreateContactEntity.ts -->
+<!-- END:.ts -->
 
 After you have run 'npx tsc' this will get compiled into a .js-file (it creates a new file in the same location). Notice that the syntax looks identical for this example:
-<!-- START:CreateContactEntity.js -->
+<!-- START:.js -->
 ```typescript
 import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
 //Variables
-const newContactName = "NewContactName";
+const newContactName = "ContactName";
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
 entity.Name = newContactName;
@@ -56,15 +56,21 @@ entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 
 ```
-<!-- END:CreateContactEntity.js -->
+<!-- END:.js -->
 
 And this is what you copy-paste into your SuperOffice-Script:
-```JavaScript
-const cAgent = new RTL.ContactAgent();
-let cEntity = await cAgent.CreateDefaultContactEntity();
-cEntity.Name = "ContactName";
-cEntity = await cAgent.SaveContactEntity(cEntity);
+<!-- START:.crmscript -->
+```typescript
+//Variables
+const newContactName = "ContactName";
+const agent = new RTL.ContactAgent();
+let entity = await agent.createDefaultContactEntityAsync();
+entity.Name = newContactName;
+entity = await agent.saveContactEntityAsync(entity);
+context.result.body = JSON.stringify(entity);
+
 ```
+<!-- END:.crmscript -->
 
 # How do i log anything in SuperOffice?
 The good old print()/printLine() is now gone, and we need to use 'context.result.body' to print any of the values back into the debug-window.
