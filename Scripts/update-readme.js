@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const mappings = {
-    'Examples/Contact/CreateContactEntity.ts': 'CreateContactEntity.ts',
+    '../Examples/Contact/CreateContactEntity.ts': 'CreateContactEntity.ts',
     //'Examples/AnotherExample.ts': 'AnotherExample.ts',
     // ... add more mappings as needed
 };
@@ -12,7 +12,7 @@ function updateCodeBlock(fileChanged) {
     if (!blockIdentifier) return;
 
     const codeFilePath = path.resolve(__dirname, fileChanged);
-    const readmePath = path.resolve(__dirname, 'readme.md');
+    const readmePath = path.resolve(__dirname, '..', 'readme.md');
 
     // Read the changing file
     const codeContent = fs.readFileSync(codeFilePath, 'utf-8');

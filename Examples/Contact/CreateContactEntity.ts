@@ -1,6 +1,6 @@
 import { RTL } from "../../Helpers/extensionMethods";
 import { context } from "../../Helpers/logHelper";
-//
+
 //Variables
 const newContactName: string = "NewContactName";
 

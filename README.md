@@ -27,13 +27,18 @@ It is also important that you import the tsclient.webapi as RTL, as that is what
 
 Lets use CreateContactEntity.cs as an example:
 <!-- START:CreateContactEntity.ts -->
-```TypeScript
-import * as RTL from "@superoffice/tsclient.webapi";
+```typescript
+import { RTL } from "../../Helpers/extensionMethods";
+import { context } from "../../Helpers/logHelper";
 
-const cAgent = new RTL.ContactAgent();
-let cEntity = await cAgent.CreateDefaultContactEntity();
-cEntity.Name = "ContactName";
-cEntity = await cAgent.SaveContactEntity(cEntity);
+//Variables
+const newContactName: string = "NewContactName";
+
+const agent = new RTL.ContactAgent();
+let entity = await agent.createDefaultContactEntityAsync();
+entity.Name = newContactName;
+entity = await agent.saveContactEntityAsync(entity);
+context.result.body = JSON.stringify(entity);
 ```
 <!-- END:CreateContactEntity.ts -->
 
