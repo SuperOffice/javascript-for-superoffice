@@ -1,6 +1,6 @@
 
 import * as tsclientWebapi from "@superoffice/tsclient.webapi";
-import { ContactEntity, PersonEntity, SaleEntity, ProjectEntity } from "@superoffice/tsclient.webapi/dist/Carriers";
+import { ContactEntity, PersonEntity, SaleEntity, ProjectEntity, TicketEntity } from "@superoffice/tsclient.webapi/dist/Carriers";
 
 
 class ExtendedContactAgent extends tsclientWebapi.ContactAgent {
@@ -67,10 +67,27 @@ class ExtendedProjectAgent extends tsclientWebapi.ProjectAgent {
 }
 
 
+class ExtendedTicketAgent extends tsclientWebapi.TicketAgent {
+    createDefaultTicketEntityAsync(): Promise<TicketEntity> {
+        return this.CreateDefaultTicketEntity();
+    }
+    getTicketEntityAsync(id: number): Promise<TicketEntity> {
+        return this.GetTicketEntity(id);
+    }
+    saveTicketEntityAsync(entity: TicketEntity): Promise<TicketEntity> {
+        return this.SaveTicketEntity(entity);
+    }
+    deleteTicketEntityAsync(id: number): Promise<void> {
+        return this.DeleteTicketEntity(id);
+    }
+}
+
+
 export const RTL = {
     ContactAgent: ExtendedContactAgent,
     PersonAgent: ExtendedPersonAgent,
     SaleAgent: ExtendedSaleAgent,
-    ProjectAgent: ExtendedProjectAgent
+    ProjectAgent: ExtendedProjectAgent,
+    TicketAgent: ExtendedTicketAgent
 };
 
