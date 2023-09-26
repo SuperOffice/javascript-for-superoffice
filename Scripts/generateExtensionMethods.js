@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
-var entities = ['Contact', 'Person', 'Sale', 'Project'];
+var entities = ['Contact', 'Person', 'Sale', 'Project', 'Ticket'];
 var generateClassForEntity = function (entity) { return "\nclass Extended".concat(entity, "Agent extends tsclientWebapi.").concat(entity, "Agent {\n    createDefault").concat(entity, "EntityAsync(): Promise<").concat(entity, "Entity> {\n        return this.CreateDefault").concat(entity, "Entity();\n    }\n    get").concat(entity, "EntityAsync(id: number): Promise<").concat(entity, "Entity> {\n        return this.Get").concat(entity, "Entity(id);\n    }\n    save").concat(entity, "EntityAsync(entity: ").concat(entity, "Entity): Promise<").concat(entity, "Entity> {\n        return this.Save").concat(entity, "Entity(entity);\n    }\n    delete").concat(entity, "EntityAsync(id: number): Promise<void> {\n        return this.Delete").concat(entity, "Entity(id);\n    }\n}\n"); };
 var outputPath = path.resolve(__dirname, '..', 'Helpers', 'extensionMethods.ts');
 var outputDirectory = path.dirname(outputPath);
