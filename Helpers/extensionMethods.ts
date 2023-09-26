@@ -67,10 +67,12 @@ class ExtendedProjectAgent extends tsclientWebapi.ProjectAgent {
 }
 
 
-export const RTL = {
+const ModifiedTsclientWebapi = {
+    ...tsclientWebapi,
     ContactAgent: ExtendedContactAgent,
     PersonAgent: ExtendedPersonAgent,
     SaleAgent: ExtendedSaleAgent,
     ProjectAgent: ExtendedProjectAgent
 };
 
+export const RTL = ModifiedTsclientWebapi;
