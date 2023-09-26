@@ -66,6 +66,7 @@ class ExtendedProjectAgent extends tsclientWebapi.ProjectAgent {
     }
 }
 
+
 class ExtendedTicketAgent extends tsclientWebapi.TicketAgent {
     createDefaultTicketEntityAsync(): Promise<TicketEntity> {
         return this.CreateDefaultTicketEntity();
@@ -81,7 +82,6 @@ class ExtendedTicketAgent extends tsclientWebapi.TicketAgent {
     }
 }
 
-export const RTL = {
 
 const ModifiedTsclientWebapi = {
     ...tsclientWebapi,
