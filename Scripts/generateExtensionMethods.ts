@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const entities: string[] = ['Contact', 'Person', 'Sale'];
+const entities: string[] = ['Contact', 'Person', 'Sale', 'Project'];
 
 const generateClassForEntity = (entity: string): string => `
 class Extended${entity}Agent extends tsclientWebapi.${entity}Agent {
