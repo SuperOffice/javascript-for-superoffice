@@ -5,7 +5,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "compileScripts": "tsc Scripts/update-readme.ts && tsc Scripts/generateExtensionMethods.ts",
+    "compileScripts": "tsc Scripts/update-readme.ts && tsc Scripts/generateExtensionMethods.ts && tsc Scripts/generateExamplefiles.ts",
     "generate-extensionMethods": "tsc Scripts/generateExtensionMethods.ts && node Scripts/generateExtensionMethods.js",
     "updatereadme": "node Scripts/update-readme.js",
     "setup": "npm install typescript --save-dev && node Scripts/generateExtensionMethods.js && npx tsc"
