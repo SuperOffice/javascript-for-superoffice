@@ -4,8 +4,8 @@ import { context } from "../../Helpers/logHelper";
 //Variables
 const newName: string = "NewName";
 
-const agent = new RTL.ContactAgent();
-let entity = await agent.createDefaultContactEntityAsync();
+const agent = new RTL.ProjectAgent();
+let entity = await agent.createDefaultProjectEntityAsync();
 entity.Name = newName;
-entity = await agent.saveContactEntityAsync(entity);
+entity = await agent.saveProjectEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
