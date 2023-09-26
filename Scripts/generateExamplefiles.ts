@@ -127,6 +127,12 @@ const entityConfigs: EntityConfig[] = [
         ],
     },
     {
+        entityName: 'Sale',
+        attributes: [
+            { name: 'Heading', value: 'NewHeading' }
+        ],
+    },
+    {
         entityName: 'Project',
         attributes: [
             { name: 'Name', value: 'NewName' }
