@@ -20,17 +20,6 @@ class Extended${entity}Agent extends tsclientWebapi.${entity}Agent {
 }
 `;
 
-
-const generateImportStatements = (): string => {
-    return `import { ${entities.map(e => `${e}Entity`).join(', ')} } from "@superoffice/tsclient.webapi/dist/Carriers";`;
-};
-
-const generateExport = (): string => `
-export const RTL = {
-    ${entities.map(entity => `${entity}Agent: Extended${entity}Agent`).join(',\n    ')}
-};
-`;
-
 const outputPath = path.resolve(__dirname, '..', 'Helpers', 'extensionMethods.ts');
 const outputDirectory = path.dirname(outputPath);
 
@@ -41,10 +30,16 @@ if (!fs.existsSync(outputDirectory)) {
 
 const outputCode = `
 import * as tsclientWebapi from "@superoffice/tsclient.webapi";
-${generateImportStatements()}
+import { ${entities.map(e => `${e}Entity`).join(', ')} } from "@superoffice/tsclient.webapi/dist/Carriers";
 
 ${entities.map(generateClassForEntity).join('\n')}
-${generateExport()}
+
+const ModifiedTsclientWebapi = {
+    ...tsclientWebapi,
+    ${entities.map(entity => `${entity}Agent: Extended${entity}Agent`).join(',\n    ')}
+};
+
+export const RTL = ModifiedTsclientWebapi;
 `;
 
 fs.writeFileSync(outputPath, outputCode);
