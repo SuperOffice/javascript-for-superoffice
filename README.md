@@ -91,6 +91,12 @@ myString = "ContactName2";
 
 In other words you dont need to write typescript and compile it into javascript, as you could just write javascript directly, but typescript does give you an easier time maintaining your code. 
 
+# OK.. So how do i know whats inside the context?
+You can run this to see whats inside the context. 
+```javascript
+context.result.body = JSON.stringify(context);
+```
+
 # Disclaimer
 1. 'OLD' CRMScripts will continue to work, but new scripts should be made in javascript. 
 2. This repo only contains examples on how to handle different entities, and will expand as new functionality is created. 
