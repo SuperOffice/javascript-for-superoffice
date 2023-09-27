@@ -91,7 +91,9 @@ myString = "ContactName2";
 
 In other words you dont need to write typescript and compile it into javascript, as you could just write javascript directly, but typescript does give you an easier time maintaining your code. 
 
-# OK.. So how do i know whats inside the context?
+# What is 'context'?
+Context is the model that contains data (eventData, cgiVariables etc) in the new script. 
+
 You can run this to see whats inside the context. 
 ```javascript
 context.result.body = JSON.stringify(context);
