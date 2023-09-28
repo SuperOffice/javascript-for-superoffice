@@ -1,13 +1,14 @@
 
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";
+import { RTL } from "../../../Helpers/extensionMethods";
+import { context } from "../../../Helpers/logHelper";
     
 //Variables
 const Firstname: string = "NewFirstname";
 const Lastname: string = "NewLastname";
+const entityId: number = 2;
 
 const agent = new RTL.PersonAgent();
-let entity = await agent.createDefaultPersonEntityAsync();
+let entity = await agent.getPersonEntityAsync(entityId);
 entity.Firstname = Firstname;
 entity.Lastname = Lastname;
 entity = await agent.savePersonEntityAsync(entity);

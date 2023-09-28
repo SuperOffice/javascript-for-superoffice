@@ -1,6 +1,6 @@
 
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";
+import { RTL } from "../../../Helpers/extensionMethods";
+import { context } from "../../../Helpers/logHelper";
     
 //Variables
 const entityId: number = 2;
