@@ -1,15 +1,49 @@
-interface Context {
+class Context {
     result: {
-        body: string;
+      body: string;
+      status: number;
     };
-}
-
-let context: Context = {
-    result: {
-        body: ''
+    vars: Record<string, unknown>;
+    funcs: Record<string, unknown>;
+    variables: {
+      activeUser: string;
+      developmentMode: string;
+      includeId: string;
+    };
+    eventData: {
+      inputValues: Record<string, unknown>;
+      navigateTo: string;
+      message: string;
+      showDialog: string;
+      outputValues: Record<string, unknown>;
+      stateValues: Record<string, unknown>;
+      exception: string;
+    };
+  
+    constructor() {
+      this.result = {
+        body: "",
+        status: 200
+      };
+      this.vars = {};
+      this.funcs = {};
+      this.variables = {
+        activeUser: "",
+        developmentMode: "",
+        includeId: ""
+      };
+      this.eventData = {
+        inputValues: {},
+        navigateTo: "",
+        message: "",
+        showDialog: "",
+        outputValues: {},
+        stateValues: {},
+        exception: ""
+      };
     }
-};
-
-export {
-    context
-};
+  }
+  
+  // Usage
+  export const context = new Context();
+  
