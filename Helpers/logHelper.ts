@@ -18,6 +18,7 @@ class Context {
       outputValues: Record<string, unknown>;
       stateValues: Record<string, unknown>;
       exception: string;
+      blockExecution: boolean;
     };
   
     constructor() {
@@ -39,7 +40,8 @@ class Context {
         showDialog: "",
         outputValues: {},
         stateValues: {},
-        exception: ""
+        exception: "",
+        blockExecution: false
       };
     }
   }
