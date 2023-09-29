@@ -11,7 +11,7 @@ class Context {
       includeId: string;
     };
     eventData: {
-      inputValues: Record<string, unknown>;
+      inputValues: Record<string, string>;
       navigateTo: string;
       message: string;
       showDialog: string;
