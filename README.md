@@ -2,6 +2,10 @@
 CRMSCript V2 enables you to write scripts with javascript, moving away from the traditional CRMscript-language as a whole. 
 The new engine implements everything the netserver has to offer, and the syntax looks familiar to those who has previously used the webapi. 
 
+See the [CRMScript 2.0: A Paradigm Shift in SuperOffice CRM Customization](./docs/index.md) document to read more about the changes.
+
+See the [CRMScript 2.0 Online Architecture](./docs/online-architecture.md) document to read more about the architecture and flow.
+
 This repo contains basic examples to get started writing scripts, and some helpers to get the proper intellisense in vscode.
 
 # Using this git repo:
