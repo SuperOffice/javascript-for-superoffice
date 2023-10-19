@@ -9,7 +9,7 @@ See the [CRMScript 2.0 Online Architecture](./docs/online-architecture.md) docum
 This repo contains basic examples to get started writing scripts, and some helpers to get the proper intellisense in vscode.
 
 # Using this git repo:
-1. git clone https://github.com/juleiste/CRMScriptsV2.git
+1. git clone https://github.com/SuperOffice/CRMScriptsV2.git
 2. Open the terminal and run 'npm run setup'
 3. Check out the Examples-folder
 
@@ -88,6 +88,7 @@ No, this repo only contains a starting-point for you to make your own scripts.
 We supply an NPM package you can import into any project of your choosing:
 
 URL: https://www.npmjs.com/package/@superoffice/webapi
+
 Command: npm i @superoffice/webapi 
 
 As long as you import this package as RTL you should not have any problems. 
