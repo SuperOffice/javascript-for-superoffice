@@ -72,6 +72,17 @@ You can run this to see whats inside the context.
 context.result.body = JSON.stringify(context);
 ```
 
+# Why not typescript?
+Javascript is a great language wich has a lot of flexibility. This flexibility also comes with a cost, and some developers dread the idea of not using a stronly typed language. 
+We at SuperOffice want to provide the best experience for all the developers out there, and how you choose to write your javascript is totally up to you! This means you can write typescript and compile that into javascript, or you can write javascript directly. 
+Per today SuperOffice plan to support javascript, as that is what you compile for instance typescript into (to be used). This does NOT mean the door is all the way shut for typescript, and we encourage you as external developers to raise your oppinion in the discussion-board here at the repo! 
+
+# Ok.. So what are my options?
+It is still un-tested in our internal editor (We will keep you posted when we know more), but JSDoc is a good option that is widely used by js-developers. It gives you the possibility to document your code and have some type checking on compiletime, and we are at this point suggesting you try it out and give us feedback on how it works for you. It is available by default in VSCode, and its a good way to make JS feel more strongly typed without having to write something else that gets compiled into JS. We know its not everything for example typescript is, but its a good middle-ground compared to forcing everyone to write typescript (which then needs to be compiled to javascript, which creates both overhead and latency). 
+
+So, to sum it up:
+Write in whatever language/way you want, and put your result-javascript into SuperOffice!
+
 # Do i need to clone this repo to create scripts?
 No, this repo only contains a starting-point for you to make your own scripts. 
 We supply an NPM package you can import into any project of your choosing:

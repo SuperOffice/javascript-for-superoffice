@@ -1,4 +1,3 @@
-
 import * as RTL from '@superoffice/webapi';
 import { context } from '../../../Helpers/logHelper';
     
