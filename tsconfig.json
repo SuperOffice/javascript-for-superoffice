@@ -105,7 +105,7 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                /* Skip type checking all .d.ts files. */
-  },
-  "include": ["Examples/**/*.ts", "Examples/HTML/HTMLPage-example.crmscript"],
-  "exclude": ["Helpers/*.ts"]
+  }
+  //"include": ["Examples/**/*.ts"],
+  //"exclude": ["Helpers/*.ts"]
 }

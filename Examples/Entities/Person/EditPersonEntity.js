@@ -1,12 +1,14 @@
-import { RTL } from "../../../Helpers/extensionMethods";
-import { context } from "../../../Helpers/logHelper";
+import * as RTL from '@superoffice/webapi';
+import { context } from '../../../Helpers/logHelper';
+    
 //Variables
-const Firstname = "NewFirstname";
-const Lastname = "NewLastname";
+const firstname = "NewFirstname";
+const lastname = "NewLastname";
 const entityId = 2;
+
 const agent = new RTL.PersonAgent();
 let entity = await agent.getPersonEntityAsync(entityId);
-entity.Firstname = Firstname;
-entity.Lastname = Lastname;
+entity.firstname = firstname;
+entity.lastname = lastname;
 entity = await agent.savePersonEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
