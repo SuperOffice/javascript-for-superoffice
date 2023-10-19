@@ -1,9 +1,12 @@
-import { RTL } from "../../../Helpers/extensionMethods";
-import { context } from "../../../Helpers/logHelper";
+
+import * as RTL from '@superoffice/webapi';
+import { context } from '../../../Helpers/logHelper';
+    
 //Variables
-const Name = "NewName";
+const name = "NewName";
+
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = Name;
+entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
