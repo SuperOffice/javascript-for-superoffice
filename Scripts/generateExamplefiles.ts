@@ -6,12 +6,16 @@ interface EntityConfig {
     attributes: { name: string; value: string }[];
 }
 
-function generateCreateEntityFile(entityConfig: EntityConfig): string {
-    const importStatements = `
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";`;
 
-    const variableDeclarations = entityConfig.attributes.map(attr => `const ${attr.name}: string = "${attr.value}";`).join('\n');
+const rtlPath = "import * as RTL from '@superoffice/webapi';";
+const contextPath = "import { context } from '../../../Helpers/logHelper';";
+
+const importStatements = `
+${rtlPath}
+${contextPath}`;
+
+function generateCreateEntityFile(entityConfig: EntityConfig): string {
+    const variableDeclarations = entityConfig.attributes.map(attr => `const ${attr.name} = "${attr.value}";`).join('\n');
 
     const agentDeclaration = `const agent = new RTL.${entityConfig.entityName}Agent();`;
 
@@ -39,13 +43,9 @@ ${resultAssignment}
 }
 
 function generateEditEntityFile(entityConfig: EntityConfig): string {
-    const importStatements = `
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";`;
+    const variableDeclarations = entityConfig.attributes.map(attr => `const ${attr.name} = "${attr.value}";`).join('\n');
 
-    const variableDeclarations = entityConfig.attributes.map(attr => `const ${attr.name}: string = "${attr.value}";`).join('\n');
-
-    const entityIdDeclaration = `const entityId: number = 2;`;
+    const entityIdDeclaration = `const entityId = 2;`;
 
     const agentDeclaration = `const agent = new RTL.${entityConfig.entityName}Agent();`;
 
@@ -74,11 +74,7 @@ ${resultAssignment}
 }
 
 function generateDeleteEntityFile(entityConfig: EntityConfig): string {
-    const importStatements = `
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";`;
-
-    const entityIdDeclaration = `const entityId: number = 2;`;
+    const entityIdDeclaration = `const entityId = 2;`;
 
     const agentDeclaration = `const agent = new RTL.${entityConfig.entityName}Agent();`;
 
@@ -104,7 +100,7 @@ function saveToFile(filePath: string, content: string) {
 }
 
 function createEntityFolder(entityName: string) {
-    const folderPath = path.join('Examples', entityName);
+    const folderPath = path.join('Examples', 'Entities', entityName);
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, { recursive: true });
     }
@@ -115,33 +111,33 @@ const entityConfigs: EntityConfig[] = [
     {
         entityName: 'Contact',
         attributes: [
-            { name: 'Name', value: 'NewName' },
+            { name: 'name', value: 'NewName' },
             // Add more attributes as needed
         ],
     },
     {
         entityName: 'Person',
         attributes: [
-            { name: 'Firstname', value: 'NewFirstname' },
-            { name: 'Lastname', value: 'NewLastname' }
+            { name: 'firstname', value: 'NewFirstname' },
+            { name: 'lastname', value: 'NewLastname' }
         ],
     },
     {
         entityName: 'Sale',
         attributes: [
-            { name: 'Heading', value: 'NewHeading' }
+            { name: 'heading', value: 'NewHeading' }
         ],
     },
     {
         entityName: 'Project',
         attributes: [
-            { name: 'Name', value: 'NewName' }
+            { name: 'name', value: 'NewName' }
         ],
     },
     {
         entityName: 'Ticket',
         attributes: [
-            { name: 'Title', value: 'NewTitle' }
+            { name: 'title', value: 'NewTitle' }
         ],
     },
     // Add more entity configurations as needed
@@ -152,9 +148,9 @@ entityConfigs.forEach(entityConfig => {
     const editFileContent = generateEditEntityFile(entityConfig);
     const deleteFileContent = generateDeleteEntityFile(entityConfig);
 
-    const createFileName = `Create${entityConfig.entityName}Entity.ts`;
-    const editFileName = `Edit${entityConfig.entityName}Entity.ts`;
-    const deleteFileName = `Delete${entityConfig.entityName}Entity.ts`;
+    const createFileName = `Create${entityConfig.entityName}Entity.js`;
+    const editFileName = `Edit${entityConfig.entityName}Entity.js`;
+    const deleteFileName = `Delete${entityConfig.entityName}Entity.js`;
 
     const folderPath = createEntityFolder(entityConfig.entityName);
 

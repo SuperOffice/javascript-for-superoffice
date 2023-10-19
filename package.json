@@ -1,12 +1,12 @@
 {
   "devDependencies": {
-    "@superoffice/tsclient.webapi": "^10.2.6-1262",
+    "@superoffice/webapi": "^10.2.9",
     "@types/node": "^20.6.5",
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "compileScripts": "tsc Scripts/update-readme.ts && tsc Scripts/generateExtensionMethods.ts && tsc Scripts/generateExamplefiles.ts",
-    "generate-extensionMethods": "tsc Scripts/generateExtensionMethods.ts && node Scripts/generateExtensionMethods.js",
+    "compileScripts": "tsc Scripts/update-readme.ts && tsc Scripts/generateExamplefiles.ts",
+    "generate-examples": "tsc Scripts/generateExamplefiles.ts && node Scripts/generateExamplefiles.js",
     "updatereadme": "node Scripts/update-readme.js",
     "setup": "npm install typescript --save-dev && npm install && node Scripts/generateExtensionMethods.js && npx tsc"
   }

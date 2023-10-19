@@ -17,24 +17,7 @@ To help the editor understand the @types we need to have the import-statement at
 
 It is also important that you import the extensionMethods as RTL, as that is what the SuperOffice-environment expects.
 
-Lets use CreateContactEntity.cs as an example:
-<!-- START:.ts -->
-```typescript
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";
-
-//Variables
-const newName: string = "NewName";
-
-const agent = new RTL.ContactAgent();
-let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newName;
-entity = await agent.saveContactEntityAsync(entity);
-context.result.body = JSON.stringify(entity);
-```
-<!-- END:.ts -->
-
-After you have run 'npx tsc' this will get compiled into a .js-file (it creates a new file in the same location):
+Lets use CreateContactEntity.js as an example:
 <!-- START:.js -->
 ```typescript
 import { RTL } from "../../Helpers/extensionMethods";
@@ -71,26 +54,6 @@ Example:
 context.result.body = "foo";
 ```
 
-# Why does this repo contain typescript-examples?
-From typescriptlang.org: 'TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale. TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor. Catch errors early in your editor.' 
-
-CRMScript V2 technically supports javascript, but this repo will contain examples in .ts, and you can compile the scripts to .js (not included in the repo).
-
-For instance, this is a valid syntax in typescript, as it declares what type a variable is:
-```javascript
-let myString: string;
-myString = "ContactName2"; 
-```
-
-The output in javascript, on the other hand, would look like this:
-```javascript
-let myString;
-myString = "ContactName2"; 
-
-```
-
-In other words you dont need to write typescript and compile it into javascript, as you could just write javascript directly, but typescript does give you an easier time maintaining your code. 
-
 # What is 'context'?
 Context is the model that contains data (eventData, cgiVariables etc) in the new script. 
 
@@ -98,6 +61,17 @@ You can run this to see whats inside the context.
 ```javascript
 context.result.body = JSON.stringify(context);
 ```
+
+# Do i need to clone this repo to create scripts?
+No, this repo only contains a starting-point for you to make your own scripts. 
+We supply an NPM package you can import into any project of your choosing:
+
+URL: https://www.npmjs.com/package/@superoffice/webapi
+Command: npm i @superoffice/webapi 
+
+As long as you import this package as RTL you should not have any problems. 
+
+PS: This NPM package does not contain the class Context, so you can either copy-paste the logHelper.js into your own project or create the class yourself. 
 
 # Disclaimer
 1. 'OLD' CRMScripts will continue to work, but new scripts should be made in javascript. 
