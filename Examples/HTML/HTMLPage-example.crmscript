@@ -17,7 +17,7 @@ print('I am JavaScript');
 
 <h2>Also from outside<h2>
 <%
-print('#meeto');
+print('So am I!');
 %>
 </body>
 </html>

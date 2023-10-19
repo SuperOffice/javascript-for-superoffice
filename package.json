@@ -5,9 +5,9 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "compileScripts": "tsc Scripts/update-readme.ts && tsc Scripts/generateExamplefiles.ts",
-    "generate-examples": "tsc Scripts/generateExamplefiles.ts && node Scripts/generateExamplefiles.js",
-    "updatereadme": "node Scripts/update-readme.js",
+    "compileScripts": "tsc Scripts/updateReadme.ts && tsc Scripts/generateExamples.ts",
+    "generateExamples": "tsc Scripts/generateExamples.ts && node Scripts/generateExamples.js",
+    "updateReadme": "tsc Scripts/updateReadme.ts && node Scripts/updateReadme.js",
     "setup": "npm install typescript --save-dev && npm install && node Scripts/generateExtensionMethods.js && npx tsc"
   }
 }

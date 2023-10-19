@@ -23,14 +23,17 @@ It is also important that you import the extensionMethods as RTL, as that is wha
 
 Lets use CreateContactEntity.js as an example:
 <!-- START:.js -->
-```typescript
-import { RTL } from "../../Helpers/extensionMethods";
-import { context } from "../../Helpers/logHelper";
+```javascript
+
+import * as RTL from '@superoffice/webapi';
+import { context } from '../../../Helpers/logHelper';
+    
 //Variables
-const newName = "NewName";
+const name = "NewName";
+
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newName;
+entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 
@@ -39,12 +42,15 @@ context.result.body = JSON.stringify(entity);
 
 And this is what you copy-paste into your SuperOffice-Script (without the lines with import):
 <!-- START:.crmscript -->
-```typescript
+```javascript
+
+    
 //Variables
-const newName = "NewName";
+const name = "NewName";
+
 const agent = new RTL.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
-entity.Name = newName;
+entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 
