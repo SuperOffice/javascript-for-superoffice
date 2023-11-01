@@ -119,6 +119,8 @@ Example workflow:
 6. Copy your script and paste it into SuperOffice, without the import-statement in point 4.
 7. Execute script in SuperOffice and see the result
 
+We are currently discussing the possibility to have a vscode extension that connects to a tenant and have the methods to download/upload scripts. This will simplify the workflow for developers wanting to work in vscode, but we have (for now) only a POC for this.
+
 ## Disclaimer
 
 1. 'OLD' CRMScripts will continue to work, but new scripts should be made in javascript.
