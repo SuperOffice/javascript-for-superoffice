@@ -1,0 +1,1 @@
+const myIncludeVar = "This String is included from other file!";

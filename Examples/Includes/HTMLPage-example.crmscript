@@ -1,0 +1,25 @@
+%EJSCRIPT_START%
+<%
+#include "js-lib";
+function print(value){
+ 	context.result.body += value;
+};
+%>
+
+<html>
+<head>
+</head>
+<body>
+<h1>From outside</h1>
+
+<%
+print('I am JavaScript');
+%>
+
+<h2>Also from outside<h2>
+<%
+print(myIncludeVar);
+%>
+</body>
+</html>
+%EJSCRIPT_END% 
