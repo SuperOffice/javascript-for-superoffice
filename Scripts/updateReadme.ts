@@ -12,9 +12,9 @@ function updateCodeBlock(): void {
     // let tsCodeContent: string = fs.readFileSync(path.resolve(__dirname, '..', 'Examples', 'Contact', 'CreateContactEntity.ts'), 'utf-8');
     // const tsCodeBlock: string = `<!-- START:.ts -->\n\`\`\`typescript\n${tsCodeContent}\n\`\`\`\n<!-- END:.ts -->`;
     
-    // Read the changed .js-file
-    let jsCodeContent: string = fs.readFileSync(path.resolve(__dirname, '..', 'Examples', 'Entities', 'Contact', 'CreateContactEntity.js'), 'utf-8');
-    const jsCodeBlock: string = `<!-- START:.js -->\n\`\`\`javascript\n${jsCodeContent}\n\`\`\`\n<!-- END:.js -->`;
+    // Read the changed .ts-file
+    let jsCodeContent: string = fs.readFileSync(path.resolve(__dirname, '..', 'Examples', 'Entities', 'Contact', 'CreateContactEntity.ts'), 'utf-8');
+    const jsCodeBlock: string = `<!-- START:.ts -->\n\`\`\`javascript\n${jsCodeContent}\n\`\`\`\n<!-- END:.ts -->`;
     
     // Filter out the lines with 'import'
     const jsCodeContentFiltered = jsCodeContent.split('\n')
@@ -24,10 +24,9 @@ function updateCodeBlock(): void {
 
     // Use regex to make all the patterns we need
     const tsPattern = new RegExp(`<!-- START:.ts -->[\\s\\S]+?<!-- END:.ts -->`);
-    const jsPattern = new RegExp(`<!-- START:.js -->[\\s\\S]+?<!-- END:.js -->`);
     const crmscriptPattern = new RegExp(`<!-- START:.crmscript -->[\\s\\S]+?<!-- END:.crmscript -->`);
 
-    const updatedReadmeContent: string = readmeContent.replace(jsPattern, jsCodeBlock).replace(crmscriptPattern, crmscriptCodeBlock); 
+    const updatedReadmeContent: string = readmeContent.replace(tsPattern, jsCodeBlock).replace(crmscriptPattern, crmscriptCodeBlock); 
     
     // Write the updated content back to the README
     fs.writeFileSync(readmePath, updatedReadmeContent);

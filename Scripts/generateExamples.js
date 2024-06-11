@@ -2,12 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
-var rtlPath = "import * as RTL from '@superoffice/webapi';";
+var rtlPath = "import { SO } from '../../../Helpers/webApiHelper';";
 var contextPath = "import { context } from '../../../Helpers/logHelper';";
+//import { SO } from '../../../Helpers/webApiHelper';
 var importStatements = "\n".concat(rtlPath, "\n").concat(contextPath);
 function generateCreateEntityFile(entityConfig) {
     var variableDeclarations = entityConfig.attributes.map(function (attr) { return "const ".concat(attr.name, " = \"").concat(attr.value, "\";"); }).join('\n');
-    var agentDeclaration = "const agent = new RTL.".concat(entityConfig.entityName, "Agent();");
+    var agentDeclaration = "const agent = SO.get".concat(entityConfig.entityName, "Agent();");
+    //const agentDeclaration = `const agent = new SO.${entityConfig.entityName}Agent();`;
     var entityCreation = "let entity = await agent.createDefault".concat(entityConfig.entityName, "EntityAsync();");
     var attributeAssignments = entityConfig.attributes.map(function (attr) { return "entity.".concat(attr.name, " = ").concat(attr.name, ";"); }).join('\n');
     var entitySave = "entity = await agent.save".concat(entityConfig.entityName, "EntityAsync(entity);");
@@ -18,7 +20,8 @@ function generateCreateEntityFile(entityConfig) {
 function generateEditEntityFile(entityConfig) {
     var variableDeclarations = entityConfig.attributes.map(function (attr) { return "const ".concat(attr.name, " = \"").concat(attr.value, "\";"); }).join('\n');
     var entityIdDeclaration = "const entityId = 2;";
-    var agentDeclaration = "const agent = new RTL.".concat(entityConfig.entityName, "Agent();");
+    var agentDeclaration = "const agent = SO.get".concat(entityConfig.entityName, "Agent();");
+    //const agentDeclaration = `const agent = new RTL.${entityConfig.entityName}Agent();`;
     var entityGet = "let entity = await agent.get".concat(entityConfig.entityName, "EntityAsync(entityId);");
     var attributeAssignments = entityConfig.attributes.map(function (attr) { return "entity.".concat(attr.name, " = ").concat(attr.name, ";"); }).join('\n');
     var entitySave = "entity = await agent.save".concat(entityConfig.entityName, "EntityAsync(entity);");
@@ -28,7 +31,8 @@ function generateEditEntityFile(entityConfig) {
 }
 function generateDeleteEntityFile(entityConfig) {
     var entityIdDeclaration = "const entityId = 2;";
-    var agentDeclaration = "const agent = new RTL.".concat(entityConfig.entityName, "Agent();");
+    var agentDeclaration = "const agent = SO.get".concat(entityConfig.entityName, "Agent();");
+    //const agentDeclaration = `const agent = new RTL.${entityConfig.entityName}Agent();`;
     var entityDelete = "await agent.delete".concat(entityConfig.entityName, "EntityAsync(entityId);");
     var resultAssignment = "context.result.body = 'EntityId ' + entityId.toString() + ' deleted';";
     var fileContent = "".concat(importStatements, "\n    \n//Variables\n").concat(entityIdDeclaration, "\n\n").concat(agentDeclaration, "\n").concat(entityDelete, "\n").concat(resultAssignment, "\n");
@@ -83,9 +87,9 @@ entityConfigs.forEach(function (entityConfig) {
     var createFileContent = generateCreateEntityFile(entityConfig);
     var editFileContent = generateEditEntityFile(entityConfig);
     var deleteFileContent = generateDeleteEntityFile(entityConfig);
-    var createFileName = "Create".concat(entityConfig.entityName, "Entity.js");
-    var editFileName = "Edit".concat(entityConfig.entityName, "Entity.js");
-    var deleteFileName = "Delete".concat(entityConfig.entityName, "Entity.js");
+    var createFileName = "Create".concat(entityConfig.entityName, "Entity.ts");
+    var editFileName = "Edit".concat(entityConfig.entityName, "Entity.ts");
+    var deleteFileName = "Delete".concat(entityConfig.entityName, "Entity.ts");
     var folderPath = createEntityFolder(entityConfig.entityName);
     var createFilePath = path.join(folderPath, createFileName);
     var editFilePath = path.join(folderPath, editFileName);

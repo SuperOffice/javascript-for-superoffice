@@ -1,10 +1,10 @@
 import { context } from "./logHelper";
 
-function print(value){
+function print(value: string){
     context.result.body += value;
 };
 
-function getCgiVariables(context){
+function getCgiVariables(context: { eventData: { cgiVariables: any; }; }){
     const cgiVariables = context?.eventData?.cgiVariables;
     if(cgiVariables == undefined){
         return {};
@@ -13,7 +13,7 @@ function getCgiVariables(context){
 }
 
 
-function getCgiContent(context){
+function getCgiContent(context: { eventData: { cgiContent: any; }; }){
     const cgiContent = context?.eventData?.cgiContent;
     if(cgiContent == undefined){
         return "";

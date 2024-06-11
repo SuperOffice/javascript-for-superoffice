@@ -1,6 +1,6 @@
-# What is JavaScript for SuperOffice?
+# What is Typescript for SuperOffice?
 
-JavaScript for SuperOffice (JSFSO) enables you to write scripts with javascript, moving away from the traditional CRMScript-language as a whole.
+Typescript for SuperOffice (TSFSO) enables you to write scripts in typescript, moving away from the traditional CRMScript-language as a whole.
 The new engine implements everything the NetServer has to offer, and the syntax looks familiar to those who has previously used the webapi.
 
 See the [JavaScript for SuperOffice: A Paradigm Shift in SuperOffice CRM Customization](./docs/index.md) document to read more about the changes.
@@ -17,41 +17,41 @@ This repo contains basic examples to get started writing scripts, and some helpe
 
 ## How do i run my script?
 
-The scripts still need to be executed inside of SuperOffice!! This means you will have to copy-paste the JS-scripts into the SuperOffice-editor after creation.
+The scripts still need to be executed inside of SuperOffice!! This means you will have to copy-paste the TS-scripts into the SuperOffice-editor after creation.
 
 VSCODE:
 To help the editor understand the @types we need to have the import-statement at the top of the file. This line is redundant in the SuperOffice-script, as it's imported by default.
 
-It is also important that you import the extensionMethods as RTL, as that is what the SuperOffice-environment expects.
+It is also important that you import the extensionMethods as SO, as that is what the SuperOffice-environment expects.
 
-Lets use CreateContactEntity.js as an example:
-<!-- START:.js -->
-```javascript
+Lets use CreateContactEntity.ts as an example:
+<!-- START:.ts -->
+```typescript
 
-import * as RTL from '@superoffice/webapi';
+import * as SO from '@superoffice/webapi';
 import { context } from '../../../Helpers/logHelper';
     
 //Variables
 const name = "NewName";
 
-const agent = new RTL.ContactAgent();
+const agent = new SO.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
 entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
 context.result.body = JSON.stringify(entity);
 
 ```
-<!-- END:.js -->
+<!-- END:.ts -->
 
 And this is what you copy-paste into your SuperOffice-Script (without the lines with import):
 <!-- START:.crmscript -->
-```javascript
+```typescript
 
     
 //Variables
 const name = "NewName";
 
-const agent = new RTL.ContactAgent();
+const agent = new SO.ContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
 entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
@@ -83,13 +83,6 @@ context.result.body = JSON.stringify(context);
 
 Yes, you can still #include other files similar to how it was done in CRMScript. Please see ./Examples/Includes for an example.
 
-## Why not typescript
-
-Javascript is a great language which has a lot of flexibility. This flexibility also comes with a cost, and some developers dread the idea of not using a strongly typed language.
-We at SuperOffice want to provide the best experience for all the developers out there, and how you choose to write your javascript is totally up to you! This means you can write typescript and compile that into javascript, or you can write javascript directly.
-
-As of 22.05.2024 we are investigating the possibility of writing TypeScript.
-
 ## Do i need to clone this repo to create scripts
 
 No, this repo only contains a starting-point for you to make your own scripts.
@@ -101,17 +94,17 @@ Command: npm i @superoffice/webapi
 
 As long as you import this package as RTL you should not have any problems.
 
-PS: This NPM package does not contain the class Context, so you can either copy-paste the logHelper.js into your own project or create the class yourself.
+PS: This NPM package does not contain the class Context, so you can either copy-paste the logHelper.ts into your own project or create the class yourself.
 
 ## Workflow
 
-How you want to work with Javascript for SuperOffice is up to you, but as per 01.11.2023 there is no proper intellisense inside the SuperOffice (Codemirror) editor, which means that you should make use of the npm-package @superoffice/webapi to get the types.
+How you want to work with Typescript for SuperOffice is up to you, but as per 01.11.2023 there is no proper intellisense inside the SuperOffice (Codemirror) editor, which means that you should make use of the npm-package @superoffice/webapi to get the types.
 
 Example workflow:
 
 1. Open a new folder/project in vscode
 2. Add npm-package with command 'npm i @superoffice/webapi'
-3. Create new file, with file-extension .js
+3. Create new file, with file-extension .ts
 4. Add import-statement at the top of the file: 'import * as RTL from '@superoffice/webapi';'
 5. Write your script
 6. Copy your script and paste it into SuperOffice, without the import-statement in point 4.
@@ -127,6 +120,6 @@ It is still undecided if this endpoint will remain open when JSFSO is in product
 
 1. This repo only contains examples on how to handle different entities, and will expand as new functionality is created.
 2. Importing your own NPM-packages are as of 22.05.2024 not supported.
-3. Only methods available in the NetServer/webapi is supported, so trying to use classes from Service (Ticket, Customer, etc) are not available. We do on the other hand know about a handful of special classes that needs to be implemented (Parser for instance). 
+3. Only methods available in the NetServer/webapi is supported, so trying to use classes from Service (Ticket, Customer, etc) are not available. We do on the other hand know about a handful of special classes that needs to be implemented (Parser for instance).
 
 Hopefully this shows how would to get writing new Scripts. Got any feedback? Please create an issue on this repo to improve its readability and usefulness!
