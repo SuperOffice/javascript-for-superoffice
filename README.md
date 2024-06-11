@@ -28,13 +28,13 @@ Lets use CreateContactEntity.ts as an example:
 <!-- START:.ts -->
 ```typescript
 
-import * as SO from '@superoffice/webapi';
+import { SO } from '../../../Helpers/webApiHelper';
 import { context } from '../../../Helpers/logHelper';
     
 //Variables
 const name = "NewName";
 
-const agent = new SO.ContactAgent();
+const agent = SO.getContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
 entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
@@ -51,7 +51,7 @@ And this is what you copy-paste into your SuperOffice-Script (without the lines 
 //Variables
 const name = "NewName";
 
-const agent = new SO.ContactAgent();
+const agent = SO.getContactAgent();
 let entity = await agent.createDefaultContactEntityAsync();
 entity.name = name;
 entity = await agent.saveContactEntityAsync(entity);
