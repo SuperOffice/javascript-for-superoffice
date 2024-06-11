@@ -1,6 +1,6 @@
 %EJSCRIPT_START%
 <%
-#include "js-lib";
+#include "ts-lib";
 function print(value){
  	context.result.body += value;
 };
